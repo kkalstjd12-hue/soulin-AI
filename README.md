@@ -11,27 +11,10 @@ AI Hub 텍스트 윤리검증 데이터셋을 활용해 8개 유해 유형을 Mu
 |------|------|
 | 베이스 모델 | klue/bert-base |
 | 허깅페이스 | https://huggingface.co/MINSEONG12/moderation |
-| API 서버 | https://MINSEONG12-moderation.hf.space |
 | 학습 데이터 | AI Hub 텍스트 윤리검증 데이터셋 |
 | Train / Val | talksets-train-1~5 / talksets-train-6 |
 | 분류 방식 | Multi-label Classification (8개 레이블) |
 | 감지 레이블 | IMMORAL_NONE, CENSURE, HATE, DISCRIMINATION, SEXUAL, VIOLENCE, ABUSE, CRIME |
-
----
-
-## 성능
-
-| Class | Precision | Recall | F1-score |
-|-------|-----------|--------|----------|
-| IMMORAL_NONE | xx | xx | xx |
-| CENSURE | xx | xx | xx |
-| HATE | xx | xx | xx |
-| DISCRIMINATION | xx | xx | xx |
-| SEXUAL | xx | xx | xx |
-| VIOLENCE | xx | xx | xx |
-| ABUSE | xx | xx | xx |
-| CRIME | xx | xx | xx |
-| **Macro F1** | | | **xx** |
 
 ---
 
@@ -106,27 +89,10 @@ python predict.py --text "분석할 텍스트" --threshold 0.4
 
 ---
 
-## API
-
-HuggingFace Space에 FastAPI로 배포되어 있습니다.
-
-```python
-import requests
-
-response = requests.post(
-    "https://MINSEONG12-moderation.hf.space/moderate",
-    json={"text": "분석할 텍스트"}
-)
-print(response.json())
-```
-
----
-
 ## 향후 개선 계획
 
 - max_length 512로 재학습
-- 하이퍼파라미터 튜닝 (learning rate, batch size)
-- 임계값 레이블별 최적화 실험
+- 하이퍼파라미터 튜닝
 
 ---
 
