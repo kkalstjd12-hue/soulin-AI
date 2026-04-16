@@ -27,7 +27,7 @@ def set_seed(seed: int = 42):
 
 
 CFG = {
-    "model_name": "klue/roberta-large",   # klue/roberta-base 로 바꾸면 더 빠름
+    "model_name": "klue/roberta-large",
     "max_length": 128,
     "batch_size": 32,
     "num_epochs": 10,
