@@ -25,7 +25,6 @@ AI Hub 감성대화 말뭉치 데이터셋을 활용해 6개 감정 클래스를
 ├── preprocess.py       # 데이터 전처리
 ├── train.py            # 모델 학습
 ├── predict.py          # 추론
-└── demo.ipynb          # Gradio 데모
 ```
 
 ---
