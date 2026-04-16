@@ -12,9 +12,8 @@ AI Hub 텍스트 윤리검증 데이터셋을 활용해 8개 유해 유형을 Mu
 | 베이스 모델 | klue/bert-base |
 | 허깅페이스 | https://huggingface.co/MINSEONG12/moderation |
 | 학습 데이터 | AI Hub 텍스트 윤리검증 데이터셋 |
-| Train / Val | talksets-train-1~5 / talksets-train-6 |
-| 분류 방식 | Multi-label Classification (8개 레이블) |
-| 감지 레이블 | IMMORAL_NONE, CENSURE, HATE, DISCRIMINATION, SEXUAL, VIOLENCE, ABUSE, CRIME |
+| 데이터 | 453,340 문장 |
+| 분류 클래스 | IMMORAL_NONE, CENSURE, HATE, DISCRIMINATION, SEXUAL, VIOLENCE, ABUSE, CRIME |
 
 ---
 
@@ -50,11 +49,6 @@ python train.py
 **추론**
 ```bash
 python predict.py --text "분석할 텍스트"
-```
-
-**추론 (임계값 조정)**
-```bash
-python predict.py --text "분석할 텍스트" --threshold 0.4
 ```
 
 ---
@@ -99,4 +93,4 @@ python predict.py --text "분석할 텍스트" --threshold 0.4
 ## 데이터셋 출처
 
 AI Hub 텍스트 윤리검증 데이터  
-https://www.aihub.or.kr
+[https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=558](https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=558)
