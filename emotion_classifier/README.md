@@ -36,19 +36,19 @@ AI Hub 감성대화 말뭉치 데이터셋을 활용해 6개 감정 클래스를
 pip install -r requirements.txt
 ```
 
+**전처리**
+```bash
+python preprocess.py
+```
+
 **학습**
 ```bash
 python train.py
 ```
 
-**추론 (대화형)**
+**추론**
 ```bash
 python predict.py
-```
-
-**추론 (배치)**
-```bash
-python predict.py --file test.csv
 ```
 
 ---
