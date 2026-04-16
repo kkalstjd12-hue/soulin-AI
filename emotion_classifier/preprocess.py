@@ -5,7 +5,7 @@ from pathlib import Path
 try:
     BASE_DIR = Path(__file__).parent
 except NameError:
-    BASE_DIR = Path.cwd()  # Jupyter에서는 현재 작업 디렉토리 사용
+    BASE_DIR = Path.cwd()
 TRAIN_JSON = BASE_DIR / "Training_221115_add/라벨링데이터/감성대화말뭉치(최종데이터)_Training.json"
 VAL_JSON   = BASE_DIR / "Validation_221115_add/라벨링데이터/감성대화말뭉치(최종데이터)_Validation.json"
 TRAIN_XLSX = BASE_DIR / "Training_221115_add/원천데이터/감성대화말뭉치(최종데이터)_Training..xlsx"
@@ -33,7 +33,6 @@ def build_text(content: dict) -> str:
 
 def load_xlsx_labels(xlsx_path: Path) -> dict:
     df = pd.read_excel(xlsx_path, header=0)
-    # 컬럼명 정리 (첫 번째 열이 None인 경우 처리)
     df.columns = [str(c).strip() if str(c) != "None" else "idx" for c in df.columns]
     return df[["감정_대분류"]].copy()
 
@@ -71,14 +70,12 @@ def process_val_json(json_path: Path, val_xlsx_path: Path) -> pd.DataFrame:
 def main():
     print("=== 데이터 전처리 시작 ===\n")
 
-    # Train
     print("[1/2] Training 데이터 로드 중...")
     train_xlsx_df = load_xlsx_labels(TRAIN_XLSX)
     train_df = process_json_with_xlsx(TRAIN_JSON, train_xlsx_df)
     print(f"  Train 샘플 수: {len(train_df)}")
     print(f"  레이블 분포:\n{train_df['label_str'].value_counts().to_string()}\n")
 
-    # Validation
     print("[2/2] Validation 데이터 로드 중...")
     val_df = process_val_json(VAL_JSON, VAL_XLSX)
     print(f"  Val 샘플 수: {len(val_df)}")
