@@ -17,20 +17,6 @@ AI Hub 감성대화 말뭉치 데이터셋을 활용해 6개 감정 클래스를
 
 ---
 
-## 성능
-
-| Class | Precision | Recall | F1-score |
-|-------|-----------|--------|----------|
-| 분노  | xx        | xx     | xx       |
-| 불안  | xx        | xx     | xx       |
-| 당황  | xx        | xx     | xx       |
-| 슬픔  | xx        | xx     | xx       |
-| 상처  | xx        | xx     | xx       |
-| 기쁨  | xx        | xx     | xx       |
-| **Macro F1** | | | **xx** |
-
----
-
 ## 파일 구조
 
 ```
@@ -101,12 +87,12 @@ python predict.py --file test.csv
 ## 향후 개선 계획
 
 - max_length 512로 재학습
-- 하이퍼파라미터 튜닝 (learning rate, batch size)
+- 하이퍼파라미터 튜닝
 - 소분류 58개 클래스 확장 실험
 
 ---
 
 ## 데이터셋 출처
 
-AI Hub 감성대화 말뭉치  
+AI Hub 감성대화 말뭉치
 https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=realm&dataSetSn=86
