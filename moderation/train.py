@@ -47,7 +47,7 @@ class EthicsDataset(Dataset):
     def __getitem__(self, idx):
         record = self.records[idx]
         text = record["text"]
-        labels = record["labels"]  # List[float], length=NUM_LABELS
+        labels = record["labels"]
 
         encoding = self.tokenizer(
             text,
@@ -58,9 +58,9 @@ class EthicsDataset(Dataset):
         )
 
         return {
-            "input_ids":      encoding["input_ids"].squeeze(0),       # [max_length]
-            "attention_mask": encoding["attention_mask"].squeeze(0),  # [max_length]
-            "labels":         torch.tensor(labels, dtype=torch.float), # [NUM_LABELS]
+            "input_ids":      encoding["input_ids"].squeeze(0),
+            "attention_mask": encoding["attention_mask"].squeeze(0),
+            "labels":         torch.tensor(labels, dtype=torch.float),
         }
 
 def evaluate(model, dataloader, pos_weight, device, threshold=0.5):
@@ -88,10 +88,9 @@ def evaluate(model, dataloader, pos_weight, device, threshold=0.5):
             all_logits.append(logits.cpu().numpy())
             all_labels.append(labels.cpu().numpy())
 
-    all_logits = np.vstack(all_logits)  # [N, NUM_LABELS]
-    all_labels = np.vstack(all_labels)  # [N, NUM_LABELS]
+    all_logits = np.vstack(all_logits)
+    all_labels = np.vstack(all_labels)
 
-    # sigmoid → 이진 예측
     probs = 1 / (1 + np.exp(-all_logits))
     preds = (probs >= threshold).astype(int)
 
@@ -177,7 +176,7 @@ def train():
             optimizer.zero_grad()
 
             outputs = model(input_ids=input_ids, attention_mask=attention_mask)
-            logits = outputs.logits                # [batch, NUM_LABELS]
+            logits = outputs.logits
             loss   = criterion(logits, labels)
 
             loss.backward()
